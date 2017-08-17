@@ -67,7 +67,7 @@ public:
                 flag = true;
             }
             else {
-                i++;
+                i++; // not proceed until the count is zero
             }
         }
         return ans;
@@ -76,4 +76,5 @@ public:
 ```
 
 ## 思路
-hashmap，空間換時間，複雜度O(n)
+hashmap，空間換時間，複雜度O(n)，
+從數字小的開始檢查，如果該數字之前有被計數，則減一直到計數歸零才換下一個數字
