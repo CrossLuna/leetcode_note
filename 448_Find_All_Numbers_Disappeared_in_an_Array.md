@@ -32,6 +32,24 @@ Hashmap
 ## TODO
 ## 解法二 (參考)
 ``` C++
+class Solution {
+public:
+    vector<int> findDisappearedNumbers(vector<int>& nums) {
+        vector<int> ans;
+        for(int i=0; i<nums.size(); ++i) {
+            int idx = abs(nums[i]) - 1;
+            if(nums[idx] > 0) nums[idx] *= -1;
+        }
+
+        for(int i=0; i<nums.size(); ++i) {
+            if(nums[i] > 0) ans.push_back(i + 1);
+        }
+        return ans;
+    }
+};
 ```
 
 ## 思路
+將出現過的置為負號
+當明顯時間複雜度為O(n)的題要求使用O(1)的複雜度時，基本上就是用相加、相乘、XOR等處理
+若無法處理，將信息存入原輸入陣列也是一法
