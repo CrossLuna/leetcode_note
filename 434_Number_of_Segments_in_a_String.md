@@ -58,9 +58,20 @@ public:
 ## 複雜度
 O(n)
 
-
+## 檢討
+1. 分號！！！
 
 ## 解法二
 ```C++
+class Solution {
+public:
+    int countSegments(string s) {
+        int res = 0;
+        for (int i = 0; i < s.size(); i++) 
+            res += s[i] != ' ' && (i + 1 == s.size() || s[i + 1] == ' ');
+        return res;
+    }
+};
 ```
 ## 思路
+相同，比較精簡
