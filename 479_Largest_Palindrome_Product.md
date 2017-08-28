@@ -91,9 +91,44 @@ public:
 超時
 
 ## 解法一
-
-
+class Solution {
+public:
+    long long power_ten(int n) {
+        long long ans = 1;
+        while(n-->0) {
+            ans *= 10;
+        }
+        return ans;
+    }
+    bool is_div(long long num, int n) {
+        long long x_min = power_ten(n-1);
+        long long x_max = power_ten(n) - 1;
+        for(long long x = x_max; x >= x_min; --x) {
+            if(num/x > x_max) return false;
+            if(num % x == 0) return true;
+        }
+        return false;
+    }
+    int largestPalindrome(int n) {
+        if(n == 1) return 9;
+        long long comp = power_ten(n) - 1;
+        long long comp_min = power_ten(n-1);
+        for(; comp >= comp_min; --comp) {
+            long long cand = 0;
+            for(int i = 0; i < 2*n; ++i) {
+                long long digit = (comp / power_ten(i))%10;
+                cand += digit * power_ten(n-1-i);
+                cand += digit * power_ten(n+i);
+            }
+            if(is_div(cand, n)) {
+                return cand % 1337;
+            }
+        }
+        return 0;
+    }
+};
 ## 思路
+生成Palindrome，用除法減少不必要的循環
 
 ## 解法二
 ```C++
